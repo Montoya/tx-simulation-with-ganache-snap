@@ -141,9 +141,22 @@ const Index = () => {
     }
   };
 
-  const handleSendContractTransactionClick = async () => {
+  const handleSendGoodContractTransactionClick = async () => {
     try {
       await sendContractTransaction(
+        TransactionConstants.GoodAddress,
+        TransactionConstants.SetStorage,
+      );
+    } catch (e) {
+      console.error(e);
+      dispatch({ type: MetamaskActions.SetError, payload: e });
+    }
+  };
+
+  const handleSendBadContractTransactionClick = async () => {
+    try {
+      await sendContractTransaction(
+        TransactionConstants.BadAddress,
         TransactionConstants.UpdateWithdrawalAccount,
       );
     } catch (e) {
@@ -226,12 +239,27 @@ const Index = () => {
         />
         <Card
           content={{
-            title: 'Send Contract Transaction',
+            title: 'Send Good Contract Transaction',
             description:
-              'Create a pending contract transaction in MetaMask so we can attempt to decode it.',
+              'Create a good pending contract transaction in MetaMask.',
             button: (
               <SendContractTransactionButton
-                onClick={handleSendContractTransactionClick}
+                onClick={handleSendGoodContractTransactionClick}
+                disabled={false}
+              />
+            ),
+          }}
+          disabled={false}
+          fullWidth={false}
+        />
+        <Card
+          content={{
+            title: 'Send Bad Contract Transaction',
+            description:
+              'Create a bad pending contract transaction in MetaMask.',
+            button: (
+              <SendContractTransactionButton
+                onClick={handleSendBadContractTransactionClick}
                 disabled={false}
               />
             ),
