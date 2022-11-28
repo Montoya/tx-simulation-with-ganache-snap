@@ -63,7 +63,7 @@ export const Header = ({
     <HeaderWrapper>
       <LogoWrapper>
         <SnapLogo color={theme.colors.icon.default} size={36} />
-        <Title>ABI Decoder Snap</Title>
+        <Title>TX Simulator Snap</Title>
       </LogoWrapper>
       <RightContainer>
         <Toggle

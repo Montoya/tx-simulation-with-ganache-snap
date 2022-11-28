@@ -155,7 +155,7 @@ const Index = () => {
   return (
     <Container>
       <Heading>
-        Welcome to <Span>ABI Decoder Snap</Span>
+        Welcome to <Span>TX Simulator Snap</Span>
       </Heading>
       <Subtitle>
         Get started by editing <code>src/index.ts</code>
