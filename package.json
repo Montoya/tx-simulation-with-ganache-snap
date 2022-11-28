@@ -1,15 +1,15 @@
 {
-  "name": "@metamask/snap-box",
+  "name": "@Montoya/tx-simulation-with-ganache-snap",
   "version": "0.1.0",
   "private": true,
   "description": "",
-  "homepage": "https://github.com/MetaMask/snap-box#readme",
+  "homepage": "https://github.com/Montoya/tx-simulation-with-ganache-snap#readme",
   "bugs": {
-    "url": "https://github.com/MetaMask/snap-box/issues"
+    "url": "https://github.com/Montoya/tx-simulation-with-ganache-snap/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MetaMask/snap-box.git"
+    "url": "git+https://github.com/Montoya/tx-simulation-with-ganache-snap.git"
   },
   "license": "(MIT-0 OR Apache-2.0)",
   "author": "",
@@ -46,5 +46,10 @@
   "packageManager": "yarn@3.2.1",
   "engines": {
     "node": ">=16.0.0"
+  },
+  "resolutions": {
+    "lodash": "patch:lodash@npm:4.17.21#.yarn/patches/lodash-npm-4.17.21-6382451519.patch",
+    "ganache": "patch:ganache@npm:7.5.0#.yarn/patches/ganache-npm-7.5.0-39a409db90.patch",
+    "ltgt": "patch:ltgt@npm:2.2.1#.yarn/patches/ltgt-npm-2.2.1-443b5da86d.patch"
   }
 }

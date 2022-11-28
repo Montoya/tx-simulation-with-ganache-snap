@@ -5,6 +5,29 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@Montoya/tx-simulation-with-ganache-snap@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@Montoya/tx-simulation-with-ganache-snap@workspace:."
+  dependencies:
+    "@metamask/eslint-config": ^10.0.0
+    "@metamask/eslint-config-jest": ^10.0.0
+    "@metamask/eslint-config-nodejs": ^10.0.0
+    "@metamask/eslint-config-typescript": ^10.0.0
+    "@typescript-eslint/eslint-plugin": ^5.33.0
+    "@typescript-eslint/parser": ^5.33.0
+    eslint: ^8.21.0
+    eslint-config-prettier: ^8.1.0
+    eslint-plugin-import: ^2.26.0
+    eslint-plugin-jest: ^26.8.2
+    eslint-plugin-jsdoc: ^39.2.9
+    eslint-plugin-node: ^11.1.0
+    eslint-plugin-prettier: ^4.2.1
+    prettier: ^2.2.1
+    prettier-plugin-packagejson: ^2.2.18
+    typescript: ^4.7.4
+  languageName: unknown
+  linkType: soft
+
 "@ampproject/remapping@npm:^2.1.0":
   version: 2.1.2
   resolution: "@ampproject/remapping@npm:2.1.2"
@@ -3662,29 +3685,6 @@ __metadata:
   checksum: 8b717ac5d53df0027c05509f03d0534700b5898dd1c3a53fb2dc4c0499ca5971b14aae67f522d09eb9f509e77f50afa95fdb3eda1afbff8b071c18a3d2905e93
   languageName: node
   linkType: hard
-
-"@metamask/snap-box@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@metamask/snap-box@workspace:."
-  dependencies:
-    "@metamask/eslint-config": ^10.0.0
-    "@metamask/eslint-config-jest": ^10.0.0
-    "@metamask/eslint-config-nodejs": ^10.0.0
-    "@metamask/eslint-config-typescript": ^10.0.0
-    "@typescript-eslint/eslint-plugin": ^5.33.0
-    "@typescript-eslint/parser": ^5.33.0
-    eslint: ^8.21.0
-    eslint-config-prettier: ^8.1.0
-    eslint-plugin-import: ^2.26.0
-    eslint-plugin-jest: ^26.8.2
-    eslint-plugin-jsdoc: ^39.2.9
-    eslint-plugin-node: ^11.1.0
-    eslint-plugin-prettier: ^4.2.1
-    prettier: ^2.2.1
-    prettier-plugin-packagejson: ^2.2.18
-    typescript: ^4.7.4
-  languageName: unknown
-  linkType: soft
 
 "@metamask/snap-types@npm:^0.22.0":
   version: 0.22.0
@@ -10897,7 +10897,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ganache@npm:^7.5.0":
+"ganache@npm:7.5.0":
   version: 7.5.0
   resolution: "ganache@npm:7.5.0"
   dependencies:
@@ -10920,6 +10920,32 @@ __metadata:
     ganache: dist/node/cli.js
     ganache-cli: dist/node/cli.js
   checksum: 3baec5c71d066264bfd14ec9a47d17f82fdea198aa7c3f020975b3c35da81872853e306fdd397f22f109f7e01268eb4434a87bb30ef2d66624fbc6fc4ce0c1ad
+  languageName: node
+  linkType: hard
+
+"ganache@patch:ganache@npm:7.5.0#.yarn/patches/ganache-npm-7.5.0-39a409db90.patch::locator=%40Montoya%2Ftx-simulation-with-ganache-snap%40workspace%3A.":
+  version: 7.5.0
+  resolution: "ganache@patch:ganache@npm%3A7.5.0#.yarn/patches/ganache-npm-7.5.0-39a409db90.patch::version=7.5.0&hash=a25cc7&locator=%40Montoya%2Ftx-simulation-with-ganache-snap%40workspace%3A."
+  dependencies:
+    "@trufflesuite/bigint-buffer": 1.1.10
+    "@types/bn.js": ^5.1.0
+    "@types/lru-cache": 5.1.1
+    "@types/seedrandom": 3.0.1
+    bufferutil: 4.0.5
+    emittery: 0.10.0
+    keccak: 3.0.2
+    leveldown: 6.1.0
+    secp256k1: 4.0.3
+    utf-8-validate: 5.0.7
+  dependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  bin:
+    ganache: dist/node/cli.js
+    ganache-cli: dist/node/cli.js
+  checksum: d6ef1bb3b408c0fe75ab8b28e2ea91ea9f8afcc8bb89fb4e04f80420e0680097a2d95791b19b46412d079c485fa5f706db5548119652fa70979e0a983d42139b
   languageName: node
   linkType: hard
 
@@ -13763,10 +13789,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.10, lodash@npm:^4.17.11, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:~4.17.0":
+"lodash@npm:4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
+  languageName: node
+  linkType: hard
+
+"lodash@patch:lodash@npm:4.17.21#.yarn/patches/lodash-npm-4.17.21-6382451519.patch::locator=%40Montoya%2Ftx-simulation-with-ganache-snap%40workspace%3A.":
+  version: 4.17.21
+  resolution: "lodash@patch:lodash@npm%3A4.17.21#.yarn/patches/lodash-npm-4.17.21-6382451519.patch::version=4.17.21&hash=2c8655&locator=%40Montoya%2Ftx-simulation-with-ganache-snap%40workspace%3A."
+  checksum: 12cbb93d6baa7778b80332f36cf778612ecebc7129ec5e0444f7113730da54427d8968eaa972fd8ae1674afc09deb24e357dd94a434d6bc93cea1e13c9c17aee
   languageName: node
   linkType: hard
 
@@ -13858,10 +13891,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ltgt@npm:^2.2.0, ltgt@npm:~2.2.0":
+"ltgt@npm:2.2.1":
   version: 2.2.1
   resolution: "ltgt@npm:2.2.1"
   checksum: 7e3874296f7538bc8087b428ac4208008d7b76916354b34a08818ca7c83958c1df10ec427eeeaad895f6b81e41e24745b18d30f89abcc21d228b94f6961d50a2
+  languageName: node
+  linkType: hard
+
+"ltgt@patch:ltgt@npm:2.2.1#.yarn/patches/ltgt-npm-2.2.1-443b5da86d.patch::locator=%40Montoya%2Ftx-simulation-with-ganache-snap%40workspace%3A.":
+  version: 2.2.1
+  resolution: "ltgt@patch:ltgt@npm%3A2.2.1#.yarn/patches/ltgt-npm-2.2.1-443b5da86d.patch::version=2.2.1&hash=210137&locator=%40Montoya%2Ftx-simulation-with-ganache-snap%40workspace%3A."
+  checksum: 523cabf128967e3f6f0b51da29d8a4ea1aceabee30297f488d1196f10af69dddd1f1711564af0116c8d8a0c9f2f31ca0af6035935d2b7a60007b63423db9a501
   languageName: node
   linkType: hard
 
