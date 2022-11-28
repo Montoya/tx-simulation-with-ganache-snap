@@ -2,10 +2,10 @@
   "name": "snap",
   "version": "0.1.0",
   "private": true,
-  "description": "The 'Hello, world!' of MetaMask Snaps, now written in TypeScript.",
+  "description": "An experimental transaction simulation snap.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetaMask/template-snap-monorepo.git"
+    "url": "https://github.com/FrederikBolding/tx-simulation-snap.git"
   },
   "license": "(MIT-0 OR Apache-2.0)",
   "main": "src/index.ts",
@@ -56,5 +56,12 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@ethersproject/units": "^5.7.0",
+    "@metamask/abi-utils": "^1.1.0",
+    "@metamask/utils": "^3.3.0",
+    "ganache": "^7.5.0",
+    "memdown": "^6.1.1"
   }
 }

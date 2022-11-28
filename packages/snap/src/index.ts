@@ -1,41 +1,51 @@
-import { OnRpcRequestHandler } from '@metamask/snap-types';
+import { OnTransactionHandler } from '@metamask/snap-types';
+import { formatUnits } from '@ethersproject/units';
+import memdown from 'memdown';
+import Ganache from 'ganache';
+import { interpretResult } from './lib/interpretation';
+import { simulateTx } from './lib/simulation';
 
-/**
- * Get a message from the origin. For demonstration purposes only.
- *
- * @param originString - The origin string.
- * @returns A message based on the origin.
- */
-export const getMessage = (originString: string): string =>
-  `Hello, ${originString}!`;
+const simulate = async (transaction: any) => {
+  const provider = Ganache.provider({
+    fork: { provider: (window as any).wallet },
+    database: { db: memdown() },
+    wallet: {
+      totalAccounts: 0,
+      unlockedAccounts: [transaction.from],
+    },
+    miner: { blockTime: 0 },
+  });
+  const receipt = await simulateTx(provider, transaction);
+  const interpreted = await interpretResult(provider, receipt);
+  const erc20s = interpreted.tokenTransfers.erc20Transfers.reduce(
+    (acc, { value, decimals, symbol, from: tokenFrom, to }, idx) => ({
+      ...acc,
+      [`ERC20 Transfer ${idx + 1}`]: `Transferred ${formatUnits(
+        value,
+        decimals,
+      )} ${symbol} ${tokenFrom} -> ${to}`,
+    }),
+    {},
+  );
+  const erc721s = interpreted.tokenTransfers.erc721Transfers.reduce(
+    (acc, { from: tokenFrom, to, tokenId, name }, idx) => ({
+      ...acc,
+      [`ERC721 Transfer ${
+        idx + 1
+      }`]: `Transferred ${name} (${tokenId}) ${tokenFrom} -> ${to}`,
+    }),
+    {},
+  );
+  const insights = {
+    'Simulation Result': interpreted.status,
+    'Gas Used': interpreted.gasUsed,
+    ...erc20s,
+    ...erc721s,
+  };
+  return insights;
+};
 
-/**
- * Handle incoming JSON-RPC requests, sent through `wallet_invokeSnap`.
- *
- * @param args - The request handler args as object.
- * @param args.origin - The origin of the request, e.g., the website that
- * invoked the snap.
- * @param args.request - A validated JSON-RPC request object.
- * @returns `null` if the request succeeded.
- * @throws If the request method is not valid for this snap.
- * @throws If the `snap_confirm` call failed.
- */
-export const onRpcRequest: OnRpcRequestHandler = ({ origin, request }) => {
-  switch (request.method) {
-    case 'hello':
-      return wallet.request({
-        method: 'snap_confirm',
-        params: [
-          {
-            prompt: getMessage(origin),
-            description:
-              'This custom confirmation is just for display purposes.',
-            textAreaContent:
-              'But you can edit the snap source code to make it do something, if you want to!',
-          },
-        ],
-      });
-    default:
-      throw new Error('Method not found.');
-  }
+export const onTransaction: OnTransactionHandler = async ({ transaction }) => {
+  const { gas: gasLimit, ...rest } = transaction;
+  return { insights: await simulate({ ...rest, gasLimit }) };
 };
