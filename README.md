@@ -1,47 +1,24 @@
-![box-img-readme](https://raw.githubusercontent.com/metamask/snap-box/master/box-img-readme.jpg)
+![box-img-readme](https://raw.githubusercontent.com/Montoya/tx-simulation-with-ganache-snap/master/box-img-readme.jpg)
 
-# @metamask/snap-box
+# @Montoya/tx-simulation-with-ganache-snap
 
-This repository is a starter template that combines the [TypeScript Template Snap](https://github.com/MetaMask/template-snap-monorepo) with a [Truffle Box](https://trufflesuite.com/boxes/), for developing and testing snaps that interact with smart contracts.
+This is an example project using [@metamask/snap-box](https://github.com/MetaMask/snap-box). It uses the [tx simulation snap](https://github.com/FrederikBolding/tx-simulation-snap) to showcase how a transaction insights snap can be tested in the MetaMask Snaps Truffle Box.
 
-MetaMask Snaps is a system that allows anyone to safely expand the capabilities of MetaMask. A _snap_ is a program that we run in an isolated environment that can customize the wallet experience.
+# How to Use
 
-Truffle Boxes are helpful boilerplates that allow you to focus on what makes your dapp unique. In addition to Truffle, Truffle Boxes can contain other helpful modules, Solidity contracts & libraries, front-end views and more; all the way up to complete example dapps. This box makes it easy to deploy and test contracts with a local Ganache instance, which can be used to test transaction insight snaps or smart contract account snaps.
+You can use this repository as-is or modify it to make your own snap. Make sure to follow the steps in the [@MetaMask/snap-box README](https://github.com/MetaMask/snap-box#readme) (Pre-requisites and Setup): 
 
-## Pre-requisites
+- [ ] Have the right versions of Node and Yarn installed
+- [ ] Install MetaMask Flask 
+- [ ] Install Truffle and Ganache globally 
+- [ ] Copy the `.env.dist` file in the Truffle folder to a new file `.env` and input your Flask SRP and Infura API Key 
 
-Snaps should work with the latest LTS version of Node.js, but we recommend using the version specified in the `.nvmrc` file. If you use [nvm](https://github.com/nvm-sh/nvm) you can easily switch to the right version by calling `nvm use` at the root of the project.
+If you do all of this correctly, when you setup and run the project from the main directory with `yarn install && yarn start` you should see the 3 workspaces run without errors (site, snap, truffle). Then you can install and test this snap from [localhost:8000](http://localhost:8000): 
 
-This box uses Yarn v3.x. If you are using Node 16 or later you can enable it with `corepack enable`.
+1. Install the snap in MetaMask Flask
+2. Set the network in Flask to Localhost 8545 (this is the default Ganache port)
+3. Try the contract interaction buttons and you should see the transaction insights tab from the installed snap 
 
-To interact with (your) snaps, you will need to install [MetaMask Flask](https://metamask.io/flask/), a canary distribution for developers that provides access to upcoming features. You should install Flask in a separate browser profile from any existing MetaMask installation.
+# Please Note
 
-Before using this box, install Truffle and Ganache globally:
-
-```shell
-npm install -g truffle ganache
-```
-
-## Installation
-
-You can install this box with Truffle:
-
-```shell
-truffle unbox metamask/snap-box
-```
-
-Alternatively, you can clone the snap-box repository [using this GitHub template](https://github.com/MetaMask/snap-box/generate).
-
-## Setup
-
-You will need an Infura API key to fork the Ethereum blockchain in your local instance of Ganache. Copy the `.env.dist` file in `packages/truffle/` to a new file `.env` and update the `INFURA_PROJECT_ID` variable with your API key.
-
-Then, you can take your Secret Recovery Phrase from MetaMask Flask and put it as the `MNEMONIC_PHRASE` in this same file. This will make your first Ethereum account as the deployer of the test contracts in Ganache and provide you with a balance for the first 10 accounts for local testing. _Remember, you should never share your Secret Recovery Phrase with anyone, and you should never use a Secret Recovery Phrase from any version of MetaMask that you use to custody real funds. This `.env` file is never and should never be uploaded to GitHub (it is explicitly excluded in `.gitignore`). This is only for testing locally with Ganache._
-
-Then, setup the development environment from the main directory:
-
-```shell
-yarn install && yarn start
-```
-
-You are now ready to start modifying the packages to build your snap. You can put smart contracts in `packages/truffle/contracts` and modify the files in `packages/snap` and `packages/site`. Connect MetaMask to your local Ganache instance by going into your settings and changing the network to "Localhost 8545" (if you cannot see it, make sure to click Show test networks).
+This project includes some patches in `/tree/main/.yarn/patches` to make Ganache work under Secure EcmaScript (required by Snaps). 
